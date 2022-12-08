@@ -10,7 +10,8 @@
 args = commandArgs(trailingOnly=TRUE)
 
 # define sitename
-sitename = args[1] # put equal to args(1)
+#sitename = args[1] # put equal to args(1)
+sitename= "FR-Pue"
 
 #Load packages
 devtools::load_all(".")
@@ -18,6 +19,7 @@ library(tidyverse)
 library(caret)
 library(bigleaf)
 library(data.table)
+library(dplyr)
 
 
 
@@ -26,7 +28,9 @@ library(data.table)
 # used here to calculate CWD only (see methods)
 
 # load df
-fluxnet <- readRDS("~/data/fLUE/modobs_fluxnet2015_s11_s12_s13_with_SWC_v3.rds")
+#fluxnet <- readRDS("~/data/fLUE/modobs_fluxnet2015_s11_s12_s13_with_SWC_v3.rds")
+fluxnet <- readRDS("F:/ET data cleaning/fET/data/modobs_fluxnet2015_s11_s12_s13_with_SWC_v3.rds")
+
 
 ddf_flue_raw <- fluxnet[[sitename]]
 
