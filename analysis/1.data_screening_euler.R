@@ -20,6 +20,7 @@ library(caret)
 library(bigleaf)
 library(data.table)
 library(dplyr)
+library(ggplot2)
 
 
 
@@ -84,7 +85,7 @@ ddf_flue <- ddf_flue %>%
   mutate(water_balance = P_F - ET) %>%  # both P and ET in mm/s (absolute in 30 minutes)
   dplyr::select(-year,-doy,-moy,-dom)
 
-# calculate CWD with gapfilled data and save it
+#calculate CWD with gapfilled data and save it
 ddf_CWD <- mct(
   ddf_flue %>%
     dplyr::select(water_balance,date) %>%
@@ -97,6 +98,8 @@ ddf_CWD <- mct(
   "water_balance",
   "date"
 )
+
+
 
 # create directory with site name to save all data
 dir_name = sprintf("data/output/%s", sitename)
@@ -135,8 +138,8 @@ grepsite <- sprintf("%s_FLUXNET2015_FULLSET", sitename)
 filename <- grep(grepsite, file_list, value=TRUE)
 
 # read it
-csv_path <- sprintf("~/data/FLUXNET-2015_Tier1/20191024/HH/%s", filename)
-#csv_path <- sprintf("data-raw/FLX_AU-Wom_FLUXNET2015_FULLSET_HH_2010-2012_1-3.csv") # local path
+#csv_path <- sprintf("~/data/FLUXNET-2015_Tier1/20191024/HH/%s", filename)
+csv_path <- sprintf("data-raw/FLX_AU-Wom_FLUXNET2015_FULLSET_HH_2010-2012_1-3.csv") # local path
 
 raw_dataHH <- fread(csv_path)
 
